@@ -106,7 +106,8 @@ public:
     renderscript32, // 32-bit RenderScript
     renderscript64, // 64-bit RenderScript
     ve,             // NEC SX-Aurora Vector Engine
-    LastArchType = ve
+    w65816,         // 64C816
+    LastArchType = w65816
   };
   enum SubArchType {
     NoSubArch,
@@ -953,6 +954,10 @@ public:
   /// Tests whether the target is VE
   bool isVE() const {
     return getArch() == Triple::ve;
+  }
+
+  bool isW65816() const {
+    return getArch() == Triple::w65816;
   }
 
   /// Tests whether the target is wasm (32- and 64-bit).

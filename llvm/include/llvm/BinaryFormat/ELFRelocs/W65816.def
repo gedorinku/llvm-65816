@@ -1,0 +1,6 @@
+
+#ifndef ELF_RELOC
+#error "ELF_RELOC must be defined"
+#endif
+
+ELF_RELOC(R_W65816_NONE, 0)

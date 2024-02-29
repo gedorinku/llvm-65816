@@ -896,6 +896,12 @@ TEST(TripleTest, ParsedIDs) {
 
   T = Triple("huh");
   EXPECT_EQ(Triple::UnknownArch, T.getArch());
+
+  T = Triple("w65816-unknown-unknown");
+  EXPECT_EQ(Triple::w65816, T.getArch());
+  EXPECT_EQ(Triple::UnknownVendor, T.getVendor());
+  EXPECT_EQ(Triple::UnknownOS, T.getOS());
+  EXPECT_EQ(Triple::UnknownEnvironment, T.getEnvironment());
 }
 
 static std::string Join(StringRef A, StringRef B, StringRef C) {
@@ -1262,6 +1268,12 @@ TEST(TripleTest, BitWidthPredicates) {
   EXPECT_FALSE(T.isArch16Bit());
   EXPECT_TRUE(T.isArch32Bit());
   EXPECT_FALSE(T.isArch64Bit());
+
+  T.setArch(Triple::w65816);
+  EXPECT_FALSE(T.isArch16Bit());
+  EXPECT_TRUE(T.isArch32Bit());
+  EXPECT_FALSE(T.isArch64Bit());
+  EXPECT_TRUE(T.isW65816());
 }
 
 TEST(TripleTest, BitWidthArchVariants) {
@@ -1459,6 +1471,10 @@ TEST(TripleTest, BitWidthArchVariants) {
 
   T.setArch(Triple::xtensa);
   EXPECT_EQ(Triple::xtensa, T.get32BitArchVariant().getArch());
+  EXPECT_EQ(Triple::UnknownArch, T.get64BitArchVariant().getArch());
+
+  T.setArch(Triple::w65816);
+  EXPECT_EQ(Triple::w65816, T.get32BitArchVariant().getArch());
   EXPECT_EQ(Triple::UnknownArch, T.get64BitArchVariant().getArch());
 }
 
