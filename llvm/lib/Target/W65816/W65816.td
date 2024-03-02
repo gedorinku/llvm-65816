@@ -1,0 +1,10 @@
+include "llvm/Target/Target.td"
+
+include "W65816InstrInfo.td"
+include "W65816RegisterInfo.td"
+
+def W65816InstrInfo : InstrInfo;
+
+def W65816 : Target {
+  let InstructionSet = W65816InstrInfo;
+}
