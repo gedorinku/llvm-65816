@@ -1,7 +1,9 @@
 include "llvm/Target/Target.td"
 
-include "W65816InstrInfo.td"
 include "W65816RegisterInfo.td"
+// include "W65816Schedule.td"
+include "W65816InstrInfo.td"
+include "W65816CallingConv.td"
 
 def W65816InstrInfo : InstrInfo;
 

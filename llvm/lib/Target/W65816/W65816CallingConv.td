@@ -1,2 +1,2 @@
 // TODO
-def CSR_LP32 : CalleeSavedRegs<(add D, SP)>
+def CSR_STACK : CalleeSavedRegs<(add D, SP)>;

@@ -12,3 +12,11 @@ class W65816Inst<dag outs, dag ins, string asmstr, list<dag> pattern,
 
   let DecoderNamespace = "W65816";
 }
+
+// TODO
+def IIAlu              : InstrItinClass;
+def IILoad             : InstrItinClass;
+def IIStore            : InstrItinClass;
+def IIBranch           : InstrItinClass;
+
+def IIPseudo           : InstrItinClass;

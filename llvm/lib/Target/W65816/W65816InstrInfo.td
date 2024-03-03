@@ -6,4 +6,6 @@ class ArithLogicI16<string instr_asm, RegisterClass RC, Operand Od> :
   let isReMaterializable = 1;
 }
 
+def simm16: Operand<i16>, ImmLeaf<i16, [{return isInt<16>(Imm);}]>;
+
 def LDA_I : ArithLogicI16<"lda.w", GPRA, simm16>;

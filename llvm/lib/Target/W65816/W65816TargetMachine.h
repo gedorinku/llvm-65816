@@ -6,6 +6,7 @@
 #include "llvm/Target/TargetMachine.h"
 
 namespace llvm {
+class W65816RegisterInfo;
 
 class W65816TargetMachine : public LLVMTargetMachine {
   std::unique_ptr<TargetLoweringObjectFile> TLOF;

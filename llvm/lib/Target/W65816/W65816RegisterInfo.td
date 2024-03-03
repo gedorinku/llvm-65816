@@ -19,7 +19,7 @@ def GPR : RegisterClass<"W65816", [i16], 0, (add
 )> {
   let RegInfos = RegInfoByHwMode<
     [DefaultMode],
-    [RegInfo<16, 16, 0>]
+    [RegInfo<16, 16, 0>]>;
 }
 
 def GPRA : RegisterClass<"W65816", [i16], 0, (add A)>;

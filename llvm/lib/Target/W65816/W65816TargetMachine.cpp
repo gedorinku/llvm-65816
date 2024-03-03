@@ -29,8 +29,8 @@ W65816TargetMachine::W65816TargetMachine(const Target &T, const Triple &TT,
                                          std::optional<Reloc::Model> RM,
                                          std::optional<CodeModel::Model> CM,
                                          CodeGenOpt::Level OL, bool JIT)
-    : LLVMTargetMachine(T, "e-m:e-p:32:32-n8:16-S8", TT, CPU, FS,
-                        Options, getEffectiveRelocModel(TT, RM),
+    : LLVMTargetMachine(T, "e-m:e-p:32:32-n16-S8", TT, CPU, FS, Options,
+                        getEffectiveRelocModel(TT, RM),
                         getEffectiveCodeModel(CM, CodeModel::Small), OL),
       TLOF(std::make_unique<TargetLoweringObjectFileELF>()) {
   initAsmInfo();
