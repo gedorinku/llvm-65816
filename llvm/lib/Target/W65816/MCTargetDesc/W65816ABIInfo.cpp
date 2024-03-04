@@ -1,4 +1,5 @@
 #include "W65816ABIInfo.h"
+#include "W65816RegisterInfo.h"
 
 using namespace llvm;
 

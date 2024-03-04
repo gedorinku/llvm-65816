@@ -1,6 +1,8 @@
 #ifndef LLVM_LIB_TARGET_W65816_W65816REGISTERINFO_H
 #define LLVM_LIB_TARGET_W65816_W65816REGISTERINFO_H
 
+#include "W65816.h"
+#include "llvm/CodeGen/MachineFunction.h"
 #include "llvm/CodeGen/TargetRegisterInfo.h"
 
 #define GET_REGINFO_HEADER

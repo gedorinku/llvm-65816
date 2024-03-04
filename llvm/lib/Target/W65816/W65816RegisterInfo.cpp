@@ -1,4 +1,7 @@
+#include "W65816.h"
 #include "W65816RegisterInfo.h"
+#include "W65816FrameLowering.h"
+#include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include <iterator>
 
 using namespace llvm;

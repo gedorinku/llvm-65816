@@ -15,8 +15,8 @@ add_llvm_target(W65816CodeGen
   W65816InstrInfo.cpp
   W65816ISelLowering.cpp
   W65816RegisterInfo.cpp
-  W65816TargetObjectFile.cpp
   W65816TargetMachine.cpp
+  W65816TargetObjectFile.cpp
 
   LINK_COMPONENTS
   Analysis
@@ -27,6 +27,7 @@ add_llvm_target(W65816CodeGen
   GlobalISel
   IPO
   MC
+  W65816Desc
   W65816Info
   SelectionDAG
   Support
@@ -38,5 +39,5 @@ add_llvm_target(W65816CodeGen
   W65816
   )
 
-add_subdirectory(TargetInfo)
 add_subdirectory(MCTargetDesc)
+add_subdirectory(TargetInfo)
