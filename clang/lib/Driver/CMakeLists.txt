@@ -40,6 +40,7 @@ add_clang_library(clangDriver
   ToolChains/Arch/Sparc.cpp
   ToolChains/Arch/SystemZ.cpp
   ToolChains/Arch/VE.cpp
+  ToolChains/Arch/W65816.cpp
   ToolChains/Arch/X86.cpp
   ToolChains/AIX.cpp
   ToolChains/Ananas.cpp

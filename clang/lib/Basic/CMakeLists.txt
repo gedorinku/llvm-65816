@@ -112,6 +112,7 @@ add_clang_library(clangBasic
   Targets/SystemZ.cpp
   Targets/TCE.cpp
   Targets/VE.cpp
+  Targets/W65816.cpp
   Targets/WebAssembly.cpp
   Targets/X86.cpp
   Targets/XCore.cpp

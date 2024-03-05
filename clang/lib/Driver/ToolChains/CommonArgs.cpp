@@ -18,6 +18,7 @@
 #include "Arch/Sparc.h"
 #include "Arch/SystemZ.h"
 #include "Arch/VE.h"
+#include "Arch/W65816.h"
 #include "Arch/X86.h"
 #include "HIPAMD.h"
 #include "Hexagon.h"
@@ -478,6 +479,9 @@ std::string tools::getCPUName(const Driver &D, const ArgList &Args,
   case llvm::Triple::loongarch32:
   case llvm::Triple::loongarch64:
     return loongarch::getLoongArchTargetCPU(Args, T);
+
+  case llvm::Triple::w65816:
+    return w65816::getW65816TargetCPU(Args);
   }
 }
 
