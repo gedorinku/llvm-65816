@@ -12,6 +12,3 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetInfo() {
   RegisterTarget<Triple::w65816> X(getTheW65816Target(), "w65816", "W65816",
                                    "W65816");
 }
-
-// TODO
-extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {}
