@@ -9,9 +9,14 @@
 #include "W65816GenRegisterInfo.inc"
 
 namespace llvm {
+class W65816Subtarget;
 
 class W65816RegisterInfo : public W65816GenRegisterInfo {
-  W65816RegisterInfo();
+protected:
+  const W65816Subtarget &Subtarget;
+
+public:
+  W65816RegisterInfo(const W65816Subtarget &Subtarget, unsigned HwMode);
 
   const MCPhysReg *getCalleeSavedRegs(const MachineFunction *MF) const override;
   const uint32_t *getCallPreservedMask(const MachineFunction &MF,
@@ -20,6 +25,8 @@ class W65816RegisterInfo : public W65816GenRegisterInfo {
   bool eliminateFrameIndex(MachineBasicBlock::iterator II, int SPAdj,
                            unsigned FIOperandNum,
                            RegScavenger *RS = nullptr) const override;
+
+  Register getFrameRegister(const MachineFunction &MF) const override;
 };
 } // namespace llvm
 

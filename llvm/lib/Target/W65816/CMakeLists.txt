@@ -15,6 +15,7 @@ add_llvm_target(W65816CodeGen
   W65816InstrInfo.cpp
   W65816ISelLowering.cpp
   W65816RegisterInfo.cpp
+  W65816Subtarget.cpp
   W65816TargetMachine.cpp
   W65816TargetObjectFile.cpp
 

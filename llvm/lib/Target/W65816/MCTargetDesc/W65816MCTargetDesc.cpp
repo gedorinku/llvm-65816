@@ -18,8 +18,8 @@ using namespace llvm;
 #define GET_INSTRINFO_MC_DESC
 #include "W65816GenInstrInfo.inc"
 
-// #define GET_SUBTARGETINFO_MC_DESC
-// #include "W65816GenSubtargetInfo.inc"
+#define GET_SUBTARGETINFO_MC_DESC
+#include "W65816GenSubtargetInfo.inc"
 
 #define GET_REGINFO_MC_DESC
 #include "W65816GenRegisterInfo.inc"
@@ -36,6 +36,14 @@ static MCRegisterInfo *createW65816MCRegisterInfo(const Triple &TT) {
   return X;
 }
 
+static MCSubtargetInfo *
+createW65816MCSubtargetInfo(const Triple &TT, StringRef CPU, StringRef FS) {
+  std::string CPUName = std::string(CPU);
+  if (CPU.empty())
+    CPU = TT.isArch64Bit() ? "cpu-rv64" : "cpu-rv32";
+  return createW65816MCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPUName, FS);
+}
+
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {
   Target *T = &getTheW65816Target();
 
@@ -47,8 +55,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {
   // MCRegisterInfoクラスを登録する
   TargetRegistry::RegisterMCRegInfo(*T, createW65816MCRegisterInfo);
 
-  //    TargetRegistry::RegisterMCSubtargetInfo(*T,
-  //    createW65816MCSubtargetInfo);
+  TargetRegistry::RegisterMCSubtargetInfo(*T, createW65816MCSubtargetInfo);
 
   // MCInstrAnalysisクラスを登録する
   //    TargetRegistry::RegisterMCInstrAnalysis(*T,

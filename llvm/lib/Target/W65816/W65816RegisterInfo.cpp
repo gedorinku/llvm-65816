@@ -1,5 +1,5 @@
-#include "W65816.h"
 #include "W65816RegisterInfo.h"
+#include "W65816.h"
 #include "W65816FrameLowering.h"
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
 #include <iterator>
@@ -8,6 +8,10 @@ using namespace llvm;
 
 #define GET_REGINFO_TARGET_DESC
 #include "W65816GenRegisterInfo.inc"
+
+W65816RegisterInfo::W65816RegisterInfo(const W65816Subtarget &Subtarget,
+                                       unsigned HwMode)
+    : W65816GenRegisterInfo(0, 0, 0, 0, HwMode), Subtarget(Subtarget) {}
 
 const MCPhysReg *
 W65816RegisterInfo::getCalleeSavedRegs(const MachineFunction *MF) const {
@@ -36,4 +40,9 @@ bool W65816RegisterInfo::eliminateFrameIndex(MachineBasicBlock::iterator II,
                                              RegScavenger *RS) const {
   // todo
   return true;
+}
+
+Register W65816RegisterInfo::getFrameRegister(const MachineFunction &MF) const {
+  const TargetFrameLowering *TFI = MF.getSubtarget().getFrameLowering();
+  return TFI->hasFP(MF) ? (W65816::D) : (W65816::SP);
 }

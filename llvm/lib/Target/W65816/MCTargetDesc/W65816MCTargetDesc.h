@@ -1,6 +1,9 @@
 #ifndef LLVM_LIB_TARGET_W65816_MCTARGETDESC_W65816MCTARGETDESC_H
 #define LLVM_LIB_TARGET_W65816_MCTARGETDESC_W65816MCTARGETDESC_H
 
+#include "llvm/Support/DataTypes.h"
+#include "llvm/MC/MCTargetOptions.h"
+
 namespace llvm {
 class Target;
 

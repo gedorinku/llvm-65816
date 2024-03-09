@@ -9,3 +9,7 @@ void W65816FrameLowering::emitEpilogue(MachineFunction &MF,
                                        MachineBasicBlock &MBB) const {
   // TODO
 }
+bool W65816FrameLowering::hasFP(const MachineFunction &MF) const {
+  // TODO
+  return false;
+}
