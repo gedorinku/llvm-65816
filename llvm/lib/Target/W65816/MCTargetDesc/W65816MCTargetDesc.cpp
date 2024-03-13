@@ -1,4 +1,5 @@
 #include "W65816MCTargetDesc.h"
+#include "W65816MCAsmInfo.h"
 
 #include "llvm/MC/MCELFStreamer.h"
 #include "llvm/MC/MCInstPrinter.h"
@@ -44,10 +45,22 @@ createW65816MCSubtargetInfo(const Triple &TT, StringRef CPU, StringRef FS) {
   return createW65816MCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPUName, FS);
 }
 
+static MCAsmInfo *createW65816MCAsmInfo(const MCRegisterInfo &MRI,
+                                          const Triple &TT,
+                                          const MCTargetOptions &Options) {
+  MCAsmInfo *MAI = new W65816MCAsmInfo(TT);
+
+  unsigned SP = MRI.getDwarfRegNum(W65816::SP, true);
+  MCCFIInstruction Inst = MCCFIInstruction::cfiDefCfa(nullptr, SP, 0);
+  MAI->addInitialFrameState(Inst);
+
+  return MAI;
+}
+
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {
   Target *T = &getTheW65816Target();
 
-  //  RegisterMCAsmInfoFn X(T, createW65816MCAsmInfo);
+  RegisterMCAsmInfoFn X(*T, createW65816MCAsmInfo);
 
   // MCInstInfoクラスを登録する
   TargetRegistry::RegisterMCInstrInfo(*T, createW65816MCInstrInfo);
