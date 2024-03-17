@@ -1,5 +1,6 @@
 add_llvm_component_library(LLVMW65816Desc
   W65816ABIInfo.cpp
+  W65816InstPrinter.cpp
   W65816MCAsmInfo.cpp
   W65816MCTargetDesc.cpp
 

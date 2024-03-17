@@ -8,6 +8,8 @@ tablegen(LLVM W65816GenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM W65816GenMCPseudoLowering.inc -gen-pseudo-lowering)
 tablegen(LLVM W65816GenCallingConv.inc -gen-callingconv)
 
+tablegen(LLVM W65816GenAsmWriter.inc -gen-asm-writer)
+
 add_public_tablegen_target(W65816CommonTableGen)
 
 add_llvm_target(W65816CodeGen

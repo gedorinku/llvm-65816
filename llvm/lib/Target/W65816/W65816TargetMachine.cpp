@@ -36,6 +36,25 @@ W65816TargetMachine::W65816TargetMachine(const Target &T, const Triple &TT,
   initAsmInfo();
 }
 
+namespace {
+class W65816PassConfig : public TargetPassConfig {
+public:
+  W65816PassConfig(W65816TargetMachine &TM, PassManagerBase &PM)
+      : TargetPassConfig(TM, PM) {}
+
+  W65816TargetMachine &getW65816TargetMachine() const {
+    return getTM<W65816TargetMachine>();
+  }
+
+  bool addInstSelector() override;
+};
+} // namespace
+
 TargetPassConfig *W65816TargetMachine::createPassConfig(PassManagerBase &PM) {
-  return new TargetPassConfig(*this, PM);
+  return new W65816PassConfig(*this, PM);
+}
+
+bool W65816PassConfig::addInstSelector() {
+  //  addPass(createW65816ISelDag(getW65816TargetMachine(), getOptLevel()));
+  return false;
 }

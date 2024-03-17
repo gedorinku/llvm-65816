@@ -1,4 +1,5 @@
 #include "W65816MCTargetDesc.h"
+#include "MCTargetDesc/W65816InstPrinter.h"
 #include "W65816MCAsmInfo.h"
 
 #include "llvm/MC/MCELFStreamer.h"
@@ -46,8 +47,8 @@ createW65816MCSubtargetInfo(const Triple &TT, StringRef CPU, StringRef FS) {
 }
 
 static MCAsmInfo *createW65816MCAsmInfo(const MCRegisterInfo &MRI,
-                                          const Triple &TT,
-                                          const MCTargetOptions &Options) {
+                                        const Triple &TT,
+                                        const MCTargetOptions &Options) {
   MCAsmInfo *MAI = new W65816MCAsmInfo(TT);
 
   unsigned SP = MRI.getDwarfRegNum(W65816::SP, true);
@@ -55,6 +56,14 @@ static MCAsmInfo *createW65816MCAsmInfo(const MCRegisterInfo &MRI,
   MAI->addInitialFrameState(Inst);
 
   return MAI;
+}
+
+static MCInstPrinter *createW65816MCInstPrinter(const Triple &T,
+                                                unsigned SyntaxVariant,
+                                                const MCAsmInfo &MAI,
+                                                const MCInstrInfo &MII,
+                                                const MCRegisterInfo &MRI) {
+  return new W65816InstPrinter(MAI, MII, MRI);
 }
 
 extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {
@@ -74,7 +83,7 @@ extern "C" LLVM_EXTERNAL_VISIBILITY void LLVMInitializeW65816TargetMC() {
   //    TargetRegistry::RegisterMCInstrAnalysis(*T,
   //    createW65816MCInstrAnalysis);
   // MCInstPrinterクラスを登録する
-  //    TargetRegistry::RegisterMCInstPrinter(*T, createW65816MCInstPrinter);
+  TargetRegistry::RegisterMCInstPrinter(*T, createW65816MCInstPrinter);
 
   // アセンブリファイル出力用TargetStreamerの登録
   //    TargetRegistry::RegisterAsmTargetStreamer(*T,
