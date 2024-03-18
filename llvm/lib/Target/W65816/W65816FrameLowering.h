@@ -14,7 +14,7 @@ protected:
 public:
   explicit W65816FrameLowering(const W65816Subtarget &sti)
       : TargetFrameLowering(StackGrowsDown,
-                            /*StackAlignment=*/Align(0),
+                            /*StackAlignment=*/Align(1),
                             /*LocalAreaOffset=*/0),
         STI(sti) {}
 

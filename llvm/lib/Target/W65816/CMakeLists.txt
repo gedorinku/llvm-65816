@@ -13,6 +13,7 @@ tablegen(LLVM W65816GenAsmWriter.inc -gen-asm-writer)
 add_public_tablegen_target(W65816CommonTableGen)
 
 add_llvm_target(W65816CodeGen
+  W65816AsmPrinter.cpp
   W65816FrameLowering.cpp
   W65816InstrInfo.cpp
   W65816ISelLowering.cpp

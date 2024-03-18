@@ -32,7 +32,8 @@ W65816TargetMachine::W65816TargetMachine(const Target &T, const Triple &TT,
     : LLVMTargetMachine(T, "e-m:e-p:32:32-n16-S8", TT, CPU, FS, Options,
                         getEffectiveRelocModel(TT, RM),
                         getEffectiveCodeModel(CM, CodeModel::Small), OL),
-      TLOF(std::make_unique<TargetLoweringObjectFileELF>()) {
+      TLOF(std::make_unique<TargetLoweringObjectFileELF>()),
+      DefaultSubtarget(TT, CPU, /* TuneCPU */ CPU, FS, *this) {
   initAsmInfo();
 }
 
