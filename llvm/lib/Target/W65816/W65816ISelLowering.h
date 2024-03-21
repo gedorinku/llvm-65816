@@ -1,13 +1,19 @@
 #ifndef LLVM_LIB_TARGET_W65816_W65816ISELLOWERING_H
 #define LLVM_LIB_TARGET_W65816_W65816ISELLOWERING_H
 
+#include "W65816.h"
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/CodeGen/TargetLowering.h"
 #include "llvm/IR/Function.h"
 
 namespace llvm {
-class W65816ISelLowering : public TargetLowering {
+class W65816Subtarget;
+
+class W65816TargetLowering : public TargetLowering {
+public:
+  explicit W65816TargetLowering(const W65816TargetMachine &TM,
+                                const W65816Subtarget &STI);
   SDValue LowerFormalArguments(SDValue Chain, CallingConv::ID CallConv,
                                bool IsVarArg,
                                const SmallVectorImpl<ISD::InputArg> &Ins,

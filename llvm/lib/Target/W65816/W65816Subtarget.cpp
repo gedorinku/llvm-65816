@@ -21,9 +21,9 @@ W65816Subtarget::W65816Subtarget(const Triple &TT, StringRef &CPU,
                                  StringRef &TuneCPU, StringRef &FS,
                                  const W65816TargetMachine &_TM)
     : W65816GenSubtargetInfo(TT, CPU, TuneCPU, FS), TM(_TM), TargetTriple(TT),
-      InstrInfo(),
+      TSInfo(), InstrInfo(),
       FrameLowering(initializeSubtargetDependencies(CPU, TuneCPU, FS, TM)),
-      RegInfo(*this, 0) {}
+      TLInfo(TM, *this), RegInfo(*this, 0) {}
 
 W65816Subtarget &W65816Subtarget::initializeSubtargetDependencies(
     StringRef CPU, StringRef TuneCPU, StringRef FS, const TargetMachine &TM) {
